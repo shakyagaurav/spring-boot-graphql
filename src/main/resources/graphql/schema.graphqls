@@ -1,0 +1,94 @@
+# schema.graphqls
+
+#scalar LocalDateTime
+
+schema{
+    mutation:Mutation
+    query:Query
+}
+
+# Define the type Product
+type Product {
+    id: ID!
+    name: String!
+    description: String
+    price: Float!
+    category: String!
+    quantity: Int!
+    inStock: Boolean!
+#    createdDate: LocalDateTime
+#    updatedDate: LocalDateTime
+}
+
+# Define the type Query for Read operations
+type Query {
+    # Find a product by ID
+    findProductById(id: ID!): Product
+
+    # Find all products
+    findAllProducts(page: Int!): [Product]
+}
+
+input ProductInput {
+    name: String!
+    description: String
+    price: Float!
+    category: String!
+    quantity: Int!
+    inStock: Boolean!
+}
+
+# Define the type Mutation for Create, Update, and Delete operations
+type Mutation {
+    # Create a new product
+    createProduct(product: ProductInput!): String
+
+    # Update an existing product
+    updateProduct(id: ID!, updatedProduct: ProductInput!): String
+
+    # Delete a product
+    deleteProduct(id: ID!): String
+}
+
+# create product
+#mutation {
+#    createProduct (product: {
+#        name: "pen",
+#        description: "writing instrument",
+#        price: 1.50
+#        quantity: 10
+#        inStock: true
+#        category: "stationery"
+#    })
+#}
+
+# find product by id
+#query findProductById($id: ID!) {
+#    findProductById(id: $id) {
+#        id
+#        name
+#        description
+#        price
+#        category
+#        quantity
+#        inStock
+#    }
+#}
+
+#graphql variable #ID
+#{
+#"id": "1"
+#}
+
+# find all products
+#{
+#    findAllProducts(page: 1) {
+#        id
+#        name
+#        description
+#        price
+#        category
+#        quantity
+#        inStock
+#    }
+#}

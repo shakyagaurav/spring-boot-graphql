@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: spring-boot-graphql
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/ecommdb
+  graphql:
+    path: /api/v1/product
